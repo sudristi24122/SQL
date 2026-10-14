@@ -1,0 +1,59 @@
+{
+    "name": "sql-terminal-runner",
+    "displayName": "SQL Terminal Runner",
+    "description": "Run SQL in your existing DuckDB terminal instead of a results tab.",
+    "version": "0.0.1",
+    "publisher": "local-sql-tools",
+    "private": true,
+    "license": "UNLICENSED",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": ["Other"],
+    "main": "./extension.js",
+    "activationEvents": ["onLanguage:sql"],
+    "capabilities": {
+        "untrustedWorkspaces": { "supported": false },
+        "virtualWorkspaces": { "supported": false }
+    },
+    "files": ["extension.js", "README.md"],
+    "scripts": {
+        "test": "node --test extension.test.js"
+    },
+    "contributes": {
+        "commands": [
+            {
+                "command": "sqlTerminalRunner.runAll",
+                "title": "Run All SQL in Terminal",
+                "icon": "$(run-all)",
+                "enablement": "editorLangId == sql && isWorkspaceTrusted"
+            },
+            {
+                "command": "sqlTerminalRunner.runSelection",
+                "title": "Run Selected SQL in Terminal",
+                "enablement": "editorLangId == sql && editorHasSelection && isWorkspaceTrusted"
+            }
+        ],
+        "menus": {
+            "editor/title": [
+                {
+                    "command": "sqlTerminalRunner.runAll",
+                    "when": "editorLangId == sql && isWorkspaceTrusted",
+                    "group": "navigation@1"
+                }
+            ],
+            "editor/context": [
+                {
+                    "command": "sqlTerminalRunner.runAll",
+                    "when": "editorLangId == sql && isWorkspaceTrusted",
+                    "group": "sqlTerminal@1"
+                },
+                {
+                    "command": "sqlTerminalRunner.runSelection",
+                    "when": "editorLangId == sql && editorHasSelection && isWorkspaceTrusted",
+                    "group": "sqlTerminal@2"
+                }
+            ]
+        }
+    }
+}
