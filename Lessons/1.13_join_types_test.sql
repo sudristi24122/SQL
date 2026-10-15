@@ -12,7 +12,7 @@
 
    Reminder: companies 'Orbit Systems' & 'Hollow Co' have ZERO jobs.
    ===================================================================== */
-select distinct job_title_short 
+select distinct job_title
 from 
 job_postings_fact;
 
