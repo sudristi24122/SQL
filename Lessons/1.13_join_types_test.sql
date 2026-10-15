@@ -12,7 +12,9 @@
 
    Reminder: companies 'Orbit Systems' & 'Hollow Co' have ZERO jobs.
    ===================================================================== */
-
+select distinct job_title_short 
+from 
+job_postings_fact;
 
 -- Q1 (INNER): List every company name that HAS at least one job posting,
 --             with how many jobs it posted. Matches only. Highest first.
